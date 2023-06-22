@@ -33,4 +33,8 @@ public abstract class Piece {
     public abstract String getDisplayCharacter(Team team);
 
     public abstract List<Point> getValidMoves(Board currentBoard);
+
+    public boolean isValidPiece() {
+        return true;
+    }
 }
