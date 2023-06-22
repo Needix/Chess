@@ -11,11 +11,15 @@ public class MainController {
     private Board board;
 
     public MainController() {
-        GUI = new Window();
+        GUI = new Window(this);
         GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         GUI.setVisible(true);
         GUI.setSize(800, 800);
 
         board = new Board();
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }
