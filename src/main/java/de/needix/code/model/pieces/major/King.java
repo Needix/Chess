@@ -29,38 +29,34 @@ public class King extends Piece {
         Point position = getPos();
 
         List<Point> validMoves = new ArrayList<>();
-        
-        //TODO: CHECK CHECK
-        
-        // Y
-        for (int i = -1; i < 2; i++) {
-            // X
-            for (int j = -1; j < 2; j++) {
-                if (position.x == 0 && position.y == 0 ) {
-                    if(j > -1 && i > -1){
-                        //check for empty space
-                        Piece piece = currentBoard.getPiece(j, i);
-                        //piece cant move down or left
-                        validMoves.add(new Point(j, i));
-                    }
-                } else if (position.x == 8 && position.y == 8) {
-                    if(j < 3 && i < 3){
-                        //check for empty space
 
-                        //piece cant move up or right
-                        validMoves.add(new Point(j, i));
-                    }
-                } else {
-                    //check for empty space
+        // TODO: check check
+        // TODO: check if enemypiece is protected
 
-                    validMoves.add(new Point(j, i));
+        for (int y = -1; y < 2; y++) {
+            for (int x = -1; x < 2; x++) {
+                int newX = position.x + x;
+                int newY = position.y + y;
+
+                if(newX < 0 && newX > 7){
+                    continue;
                 }
+                if(newY < 0 && newY > 7){
+                    continue;
+                }
+
+                Piece piece = currentBoard.getPiece(newX, newY);
+                if(piece.isValidPiece() == false || piece.getTeam() == this.getTeam()){
+                    continue;
+                }
+
+                validMoves.add(new Point(newX, newY));
             }
         }
 
         // Remove position piece is on from valid moves
         for (Point point : validMoves) {
-            if(point.equals(position)){
+            if (point.equals(position)) {
                 validMoves.remove(point);
             }
         }
