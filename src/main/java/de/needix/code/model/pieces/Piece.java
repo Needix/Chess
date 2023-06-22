@@ -30,7 +30,7 @@ public abstract class Piece {
         return pos;
     }
 
-    public abstract String getDisplayCharacter(Team team);
+    public abstract String getDisplayCharacter();
 
     public abstract List<Point> getValidMoves(Board currentBoard);
 
@@ -38,3 +38,4 @@ public abstract class Piece {
         return true;
     }
 }
+
