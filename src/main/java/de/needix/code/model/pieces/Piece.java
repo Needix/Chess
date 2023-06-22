@@ -33,4 +33,9 @@ public abstract class Piece {
     public abstract String getDisplayCharacter();
 
     public abstract List<Point> getValidMoves(Board currentBoard);
+
+    public boolean isValidPiece() {
+        return true;
+    }
 }
+
