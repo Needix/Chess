@@ -13,10 +13,10 @@ public class King extends Piece {
     public String getDisplayCharacter() {
         switch (getTeam()) {
             case WHITE:
-                return "U+2654";
+                return "♔";
 
             case BLACK:
-                return "U+265A";
+                return "♚";
 
             default:
                 return "";
@@ -31,7 +31,7 @@ public class King extends Piece {
         List<Point> validMoves = new ArrayList<>();
 
         // TODO: check check
-        // TODO: check if enemypiece is protected
+        // TODO: check if enemy-piece is protected
 
         for (int y = -1; y < 2; y++) {
             for (int x = -1; x < 2; x++) {
