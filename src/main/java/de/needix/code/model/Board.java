@@ -1,5 +1,7 @@
 package de.needix.code.model;
 
+import java.awt.Point;
+
 import de.needix.code.controller.MainController;
 import de.needix.code.model.pieces.Piece;
 import de.needix.code.model.pieces.Piece.Team;
@@ -57,5 +59,10 @@ public class Board {
 
     public Piece getPiece(int x, int y) {
         return pieces[x][y];
+    }
+
+    public boolean isInBounds(Point position) {
+        return position.x >= 0 && position.y >= 0 && position.x < MainController.BOARD_SIZE
+                && position.y < MainController.BOARD_SIZE;
     }
 }

@@ -38,6 +38,10 @@ public class King extends Piece {
                 int newX = position.x + x;
                 int newY = position.y + y;
 
+                // Remove position piece is on from valid moves
+                if(x == 0 && y == 0){
+                    continue;
+                }
                 if(newX < 0 && newX > 7){
                     continue;
                 }
@@ -54,12 +58,6 @@ public class King extends Piece {
             }
         }
 
-        // Remove position piece is on from valid moves
-        for (Point point : validMoves) {
-            if (point.equals(position)) {
-                validMoves.remove(point);
-            }
-        }
         return validMoves;
     }
 
