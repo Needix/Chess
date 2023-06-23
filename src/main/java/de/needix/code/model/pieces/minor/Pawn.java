@@ -70,11 +70,5 @@ public class Pawn extends Piece {
             default:
                 break;
         }
-
-<<<<<<< HEAD
-=======
-        return Collections.emptyList();
->>>>>>> e539c8917cda67f65455715971757c7429eabf94
     }
-
 }
