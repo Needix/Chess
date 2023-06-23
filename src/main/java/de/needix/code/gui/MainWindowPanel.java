@@ -61,7 +61,7 @@ public class MainWindowPanel extends JPanel implements MouseListener {
 
                 g.setColor(Color.BLACK);
                 ((Graphics2D) g).setFont(new Font("Courier", Font.BOLD, 80));
-                g.drawString(piece.getDisplayCharacter(null), (int) (xCoord + (cellWidth / 10)),
+                g.drawString(piece.getDisplayCharacter(), (int) (xCoord + (cellWidth / 10)),
                         (int) (yCoord + (cellHeight / 1.2)));
             }
         }
