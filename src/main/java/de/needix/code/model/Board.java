@@ -61,6 +61,10 @@ public class Board {
         return pieces[x][y];
     }
 
+    public Piece getPiece(Point position){
+        return pieces[position.x][position.y];
+    }
+
     public boolean isInBounds(Point position) {
         return position.x >= 0 && position.y >= 0 && position.x < MainController.BOARD_SIZE
                 && position.y < MainController.BOARD_SIZE;
