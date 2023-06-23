@@ -2,6 +2,7 @@ package de.needix.code.model.pieces.minor;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,22 +25,19 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Point> getValidMoves(Board currentBoard) {
-
-        Point position = this.getPos();
+    public List<Point> getValidMoves(Board currentBoard, Point currentPosition) {
         List<Point> validMoves = new ArrayList<>();
 
         switch (getTeam()) {
             case WHITE:
-
                 // one up
-                int newY = position.y + 1;
+                int newY = currentPosition.y + 1;
                 // one up - left
-                int newXLeft = position.x - 1;
+                int newXLeft = currentPosition.x - 1;
                 // one up - right
-                int newXRight = position.x + 1;
+                int newXRight = currentPosition.x + 1;
 
-                Point forward = new Point(position.x, newY);
+                Point forward = new Point(currentPosition.x, newY);
                 Point forwardLeft = new Point(newXLeft, newY);
                 Point forwardRight = new Point(newXRight, newY);
 
@@ -48,9 +46,9 @@ public class Pawn extends Piece {
                     if (!forwardPiece.isValidPiece()) {
                         validMoves.add(forward);
 
-                        if (position.y == 1) {
+                        if (currentPosition.y == 1) {
 
-                            Point jumpPoint = new Point(position.x, position.y + 2);
+                            Point jumpPoint = new Point(currentPosition.x, currentPosition.y + 2);
                             Piece jumpPiece = currentBoard.getPiece(jumpPoint);
                             if (!jumpPiece.isValidPiece()) {
                                 validMoves.add(jumpPoint);
@@ -86,5 +84,6 @@ public class Pawn extends Piece {
             default:
                 break;
         }
+        return validMoves;
     }
 }

@@ -19,10 +19,13 @@ import de.needix.code.model.EmptyPiece;
 import de.needix.code.model.pieces.Piece;
 
 public class MainWindowPanel extends JPanel implements MouseListener {
+    private final MainController controller;
     private Board currentBoard;
     private Piece selectedPiece = new EmptyPiece();
 
-    public MainWindowPanel() {
+    public MainWindowPanel(MainController controller) {
+        this.controller = controller;
+
         addMouseListener(this);
     }
 
@@ -37,7 +40,8 @@ public class MainWindowPanel extends JPanel implements MouseListener {
         double cellWidth = getCellWidth();
         double cellHeight = getCellHeight();
 
-        Set<Point> validMoves = new HashSet<>(selectedPiece.getValidMoves(currentBoard));
+        Set<Point> validMoves = new HashSet<>(
+                selectedPiece.getValidMoves(currentBoard, currentBoard.getPosition(selectedPiece)));
 
         for (int x = 0; x < MainController.BOARD_SIZE; x++) {
             for (int y = 0; y < MainController.BOARD_SIZE; y++) {
@@ -93,10 +97,20 @@ public class MainWindowPanel extends JPanel implements MouseListener {
         double cellHeight = getCellHeight();
 
         int coordPieceX = (int) (xCoord / cellWidth);
-        int coordPieceY = (int) (yCoord / cellHeight);
+        int coordPieceY = MainController.BOARD_SIZE - 1 - ((int) (yCoord / cellHeight));
 
-        selectedPiece =
-                currentBoard.getPiece(coordPieceX, MainController.BOARD_SIZE - coordPieceY - 1);
+        if (!selectedPiece.isValidPiece()) {
+            selectedPiece = currentBoard.getPiece(coordPieceX, coordPieceY);
+        } else {
+            Piece oldPiece = selectedPiece;
+            selectedPiece =
+                    controller.movePiece(selectedPiece, new Point(coordPieceX, coordPieceY));
+            if (oldPiece == selectedPiece) {
+                selectedPiece = new EmptyPiece();
+            }
+        }
+
+        repaint();
     }
 
     @Override

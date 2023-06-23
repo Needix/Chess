@@ -12,7 +12,7 @@ public class Window extends JFrame {
     public Window(MainController controller) {
         this.controller = controller;
 
-        mainWindowFrame = new MainWindowPanel();
+        mainWindowFrame = new MainWindowPanel(controller);
         mainWindowFrame.setBounds(0, 0, (int) getBounds().getWidth(),
                 (int) getBounds().getHeight());
         mainWindowFrame.setVisible(true);
@@ -26,7 +26,7 @@ public class Window extends JFrame {
             mainWindowFrame.updatePanel(controller.getBoard());
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

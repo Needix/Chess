@@ -14,7 +14,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public List<Point> getValidMoves(Board currentBoard) {
+    public List<Point> getValidMoves(Board currentBoard, Point currentPosition) {
         return Collections.emptyList();
     }
 
