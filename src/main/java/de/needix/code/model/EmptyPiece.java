@@ -13,7 +13,7 @@ public class EmptyPiece extends Piece {
     }
 
     @Override
-    public List<Point> getValidMoves(Board currentBoard) {
+    public List<Point> getValidMoves(Board currentBoard, Point position) {
         return Collections.emptyList();
     }
 

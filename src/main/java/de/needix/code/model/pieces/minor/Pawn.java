@@ -2,6 +2,7 @@ package de.needix.code.model.pieces.minor;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,13 +24,9 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Point> getValidMoves(Board currentBoard) {
-
-        Point position = this.getPos();
-        List<Point> validMoves = new ArrayList<>();
-
-
-        return Collections.emptyList();
+    public List<Point> getValidMoves(Board currentBoard, Point currentPosition) {
+        return Arrays.asList(new Point(currentPosition.x, currentPosition.y + 1),
+                new Point(currentPosition.x, currentPosition.y + 2));
     }
 
 }

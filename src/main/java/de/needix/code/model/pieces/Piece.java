@@ -9,7 +9,6 @@ public abstract class Piece {
         WHITE, BLACK
     }
 
-    private Point pos;
     private Team team;
 
     public Piece setTeam(Team team) {
@@ -21,18 +20,9 @@ public abstract class Piece {
         return team;
     }
 
-    public Piece setPos(Point pos) {
-        this.pos = pos;
-        return this;
-    }
-
-    public Point getPos() {
-        return pos;
-    }
-
     public abstract String getDisplayCharacter();
 
-    public abstract List<Point> getValidMoves(Board currentBoard);
+    public abstract List<Point> getValidMoves(Board currentBoard, Point currentPosition);
 
     public boolean isValidPiece() {
         return true;

@@ -10,11 +10,11 @@ public class Knight extends Piece {
 
     @Override
     public String getDisplayCharacter() {
-        return "Bishop";
+        return "Knight";
     }
 
     @Override
-    public List<Point> getValidMoves(Board currentBoard) {
+    public List<Point> getValidMoves(Board currentBoard, Point currentPosition) {
         return Collections.emptyList();
     }
 }
