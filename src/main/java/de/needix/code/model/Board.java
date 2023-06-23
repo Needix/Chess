@@ -72,7 +72,11 @@ public class Board {
     }
 
     public Piece getPiece(int x, int y) {
-        Piece piece = pointToPieceMap.get(new Point(x, y));
+        return getPiece(new Point(x, y));
+    }
+
+    public Piece getPiece(Point position) {
+        Piece piece = pointToPieceMap.get(position);
         if (piece == null) {
             piece = new EmptyPiece();
         }
@@ -81,10 +85,6 @@ public class Board {
 
     public Point getPosition(Piece piece) {
         return piecesToPointMap.get(piece);
-    }
-
-    public Piece getPiece(Point position){
-        return pieces[position.x][position.y];
     }
 
     public boolean isInBounds(Point position) {
