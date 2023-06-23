@@ -2,6 +2,7 @@ package de.needix.code.model.pieces.minor;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import de.needix.code.controller.MainController;
@@ -70,6 +71,10 @@ public class Pawn extends Piece {
                 break;
         }
 
+<<<<<<< HEAD
+=======
+        return Collections.emptyList();
+>>>>>>> e539c8917cda67f65455715971757c7429eabf94
     }
 
 }

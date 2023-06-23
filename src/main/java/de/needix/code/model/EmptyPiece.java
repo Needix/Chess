@@ -8,7 +8,7 @@ import de.needix.code.model.pieces.Piece;
 public class EmptyPiece extends Piece {
 
     @Override
-    public String getDisplayCharacter(Team team) {
+    public String getDisplayCharacter() {
         return "";
     }
 
