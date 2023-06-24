@@ -31,7 +31,7 @@ public class Rook extends Piece {
         //X-axis - right
         for (int i = currentPosition.x; i < MainController.BOARD_SIZE; i++) {
             Point check = new Point(i, currentPosition.y);
-            if(currentBoard.isInBounds(currentPosition)){
+            if(currentBoard.isInBounds(check)){
                 Piece blockingPiece = currentBoard.getPiece(currentPosition);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
@@ -43,8 +43,8 @@ public class Rook extends Piece {
         //X-axis - left
         for (int i = currentPosition.x; i >= 0; i--) {
             Point check = new Point(i, currentPosition.y);
-            if(currentBoard.isInBounds(currentPosition)){
-                Piece blockingPiece = currentBoard.getPiece(currentPosition);
+            if(currentBoard.isInBounds(check)){
+                Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
                 } else{
@@ -56,8 +56,8 @@ public class Rook extends Piece {
         //Y-axis - up
         for (int i = currentPosition.x; i < MainController.BOARD_SIZE; i++) {
             Point check = new Point(currentPosition.x, i);
-            if(currentBoard.isInBounds(currentPosition)){
-                Piece blockingPiece = currentBoard.getPiece(currentPosition);
+            if(currentBoard.isInBounds(check)){
+                Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
                 } else{
@@ -68,8 +68,8 @@ public class Rook extends Piece {
         //Y-axis - down
         for (int i = currentPosition.x; i >= 0; i--) {
             Point check = new Point(currentPosition.x, i);
-            if(currentBoard.isInBounds(currentPosition)){
-                Piece blockingPiece = currentBoard.getPiece(currentPosition);
+            if(currentBoard.isInBounds(check)){
+                Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
                 } else{
