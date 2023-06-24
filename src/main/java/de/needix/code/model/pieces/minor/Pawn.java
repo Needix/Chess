@@ -52,7 +52,7 @@ public class Pawn extends Piece {
             case BLACK:
                 
                 // one up
-                int downY = currentPosition.y + 1;
+                int downY = currentPosition.y - 1;
                 // one up - left
                 int downXLeft = currentPosition.x - 1;
                 // one up - right
@@ -67,7 +67,7 @@ public class Pawn extends Piece {
                 if (downY == 0) {
                     // TODO Upgrade that bitch!
                 }
-                
+
                 return validMoves;
 
             default:
