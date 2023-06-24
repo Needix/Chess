@@ -85,21 +85,24 @@ public class Pawn extends Piece {
             if (!forwardPiece.isValidPiece()) {
                 validMoves.add(forward);
 
-                if (currentPosition.y == 6) {
                     switch (getTeam()) {
                         case WHITE:
+                         if (currentPosition.y == 1) {
                             Point jumpPoint = new Point(currentPosition.x, currentPosition.y + 2);
                             Piece jumpPiece = currentBoard.getPiece(jumpPoint);
                             if (!jumpPiece.isValidPiece()) {
                                 validMoves.add(jumpPoint);
                             }
+                        }
                             break;
                         case BLACK:
-                            Point jumpPointBlack = new Point(currentPosition.x, currentPosition.y - 2);
-                            Piece jumpPieceBlack = currentBoard.getPiece(jumpPointBlack);
-                            if (!jumpPieceBlack.isValidPiece()) {
-                                validMoves.add(jumpPointBlack);
+                            if (currentPosition.y == 6) {
+                            Point jumpPoint = new Point(currentPosition.x, currentPosition.y - 2);
+                            Piece jumpPiece = currentBoard.getPiece(jumpPoint);
+                            if (!jumpPiece.isValidPiece()) {
+                                validMoves.add(jumpPoint);
                             }
+                        }
                         break;
                         default:
                             break;
@@ -107,7 +110,7 @@ public class Pawn extends Piece {
 
                 }
             }
-        }
+        
 
         if (currentBoard.isInBounds(forwardLeft)) {
             Piece forwardLeftPiece = currentBoard.getPiece(forwardLeft);
