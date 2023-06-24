@@ -27,62 +27,86 @@ public class Pawn extends Piece {
     @Override
     public List<Point> getValidMoves(Board currentBoard, Point currentPosition) {
         List<Point> validMoves = new ArrayList<>();
-
         switch (getTeam()) {
+
             case WHITE:
                 // one up
-                int newY = currentPosition.y + 1;
+                int upY = currentPosition.y + 1;
                 // one up - left
-                int newXLeft = currentPosition.x - 1;
+                int upXLeft = currentPosition.x - 1;
                 // one up - right
-                int newXRight = currentPosition.x + 1;
+                int upXRight = currentPosition.x + 1;
 
-                Point forward = new Point(currentPosition.x, newY);
-                Point forwardLeft = new Point(newXLeft, newY);
-                Point forwardRight = new Point(newXRight, newY);
+                Point forward = new Point(currentPosition.x, upY);
+                Point forwardLeft = new Point(upXLeft, upY);
+                Point forwardRight = new Point(upXRight, upY);
 
-                if (currentBoard.isInBounds(forward)) {
-                    Piece forwardPiece = currentBoard.getPiece(forward);
-                    if (!forwardPiece.isValidPiece()) {
-                        validMoves.add(forward);
+                validMoves = getPossibleMoves(currentBoard, currentPosition, forward, forwardLeft, forwardRight);
 
-                        if (currentPosition.y == 1) {
-
-                            Point jumpPoint = new Point(currentPosition.x, currentPosition.y + 2);
-                            Piece jumpPiece = currentBoard.getPiece(jumpPoint);
-                            if (!jumpPiece.isValidPiece()) {
-                                validMoves.add(jumpPoint);
-                            }
-                        }
-                    }
-                }
-
-                if (currentBoard.isInBounds(forwardLeft)) {
-                    Piece forwardLeftPiece = currentBoard.getPiece(forwardLeft);
-                    if (forwardLeftPiece.isValidPiece() && forwardLeftPiece.getTeam() != this.getTeam()) {
-                        validMoves.add(forwardLeft);
-                    }
-                }
-
-                if (currentBoard.isInBounds(forwardRight)) {
-                    Piece forwardRightPiece = currentBoard.getPiece(forwardRight);
-                    if (forwardRightPiece.isValidPiece() && forwardRightPiece.getTeam() != this.getTeam()) {
-                        validMoves.add(forwardRight);
-                    }
-                }
-
-                if(newY == MainController.BOARD_SIZE -1 ){
-                    //TODO Upgrade that bitch!
+                if (upY == MainController.BOARD_SIZE - 1) {
+                    // TODO Upgrade that bitch!
                 }
 
                 return validMoves;
 
             case BLACK:
+                
+                // one up
+                int downY = currentPosition.y + 1;
+                // one up - left
+                int downXLeft = currentPosition.x - 1;
+                // one up - right
+                int downXRight = currentPosition.x + 1;
 
-                break;
+                Point forwardDown = new Point(currentPosition.x, downY);
+                Point forwardLeftDown = new Point(downXLeft, downY);
+                Point forwardRightDown = new Point(downXRight, downY);
+
+                validMoves = getPossibleMoves(currentBoard, currentPosition, forwardDown, forwardLeftDown, forwardRightDown);
+
+                if (downY == 0) {
+                    // TODO Upgrade that bitch!
+                }
+                
+                return validMoves;
 
             default:
                 break;
+        }
+        return validMoves;
+    }
+
+    private List<Point> getPossibleMoves(Board currentBoard, Point currentPosition, Point forward, Point forwardLeft,
+            Point forwardRight) {
+        List<Point> validMoves = new ArrayList<>();
+        if (currentBoard.isInBounds(forward)) {
+            Piece forwardPiece = currentBoard.getPiece(forward);
+            if (!forwardPiece.isValidPiece()) {
+                validMoves.add(forward);
+
+                if (currentPosition.y == 1) {
+
+                    Point jumpPoint = new Point(currentPosition.x, currentPosition.y + 2);
+                    Piece jumpPiece = currentBoard.getPiece(jumpPoint);
+                    if (!jumpPiece.isValidPiece()) {
+                        validMoves.add(jumpPoint);
+                    }
+                }
+            }
+        }
+
+        if (currentBoard.isInBounds(forwardLeft)) {
+            Piece forwardLeftPiece = currentBoard.getPiece(forwardLeft);
+            if (forwardLeftPiece.isValidPiece() && forwardLeftPiece.getTeam() != this.getTeam()) {
+                validMoves.add(forwardLeft);
+            }
+        }
+
+        if (currentBoard.isInBounds(forwardRight)) {
+            Piece forwardRightPiece = currentBoard.getPiece(forwardRight);
+            if (forwardRightPiece.isValidPiece() && forwardRightPiece.getTeam() != this.getTeam()) {
+                validMoves.add(forwardRight);
+            }
         }
         return validMoves;
     }
