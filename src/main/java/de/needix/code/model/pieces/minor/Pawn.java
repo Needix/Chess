@@ -84,9 +84,9 @@ public class Pawn extends Piece {
             if (!forwardPiece.isValidPiece()) {
                 validMoves.add(forward);
 
-                if (currentPosition.y == 1) {
+                if (currentPosition.y == 6) {
 
-                    Point jumpPoint = new Point(currentPosition.x, currentPosition.y + 2);
+                    Point jumpPoint = new Point(currentPosition.x, currentPosition.y - 2);
                     Piece jumpPiece = currentBoard.getPiece(jumpPoint);
                     if (!jumpPiece.isValidPiece()) {
                         validMoves.add(jumpPoint);
