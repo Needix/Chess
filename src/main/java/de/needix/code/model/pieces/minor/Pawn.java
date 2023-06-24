@@ -50,7 +50,7 @@ public class Pawn extends Piece {
                 return validMoves;
 
             case BLACK:
-                
+
                 // one up
                 int downY = currentPosition.y - 1;
                 // one up - left
@@ -62,7 +62,8 @@ public class Pawn extends Piece {
                 Point forwardLeftDown = new Point(downXLeft, downY);
                 Point forwardRightDown = new Point(downXRight, downY);
 
-                validMoves = getPossibleMoves(currentBoard, currentPosition, forwardDown, forwardLeftDown, forwardRightDown);
+                validMoves = getPossibleMoves(currentBoard, currentPosition, forwardDown, forwardLeftDown,
+                        forwardRightDown);
 
                 if (downY == 0) {
                     // TODO Upgrade that bitch!
@@ -85,12 +86,25 @@ public class Pawn extends Piece {
                 validMoves.add(forward);
 
                 if (currentPosition.y == 6) {
-
-                    Point jumpPoint = new Point(currentPosition.x, currentPosition.y - 2);
-                    Piece jumpPiece = currentBoard.getPiece(jumpPoint);
-                    if (!jumpPiece.isValidPiece()) {
-                        validMoves.add(jumpPoint);
+                    switch (getTeam()) {
+                        case WHITE:
+                            Point jumpPoint = new Point(currentPosition.x, currentPosition.y + 2);
+                            Piece jumpPiece = currentBoard.getPiece(jumpPoint);
+                            if (!jumpPiece.isValidPiece()) {
+                                validMoves.add(jumpPoint);
+                            }
+                            break;
+                        case BLACK:
+                            Point jumpPointBlack = new Point(currentPosition.x, currentPosition.y - 2);
+                            Piece jumpPieceBlack = currentBoard.getPiece(jumpPointBlack);
+                            if (!jumpPieceBlack.isValidPiece()) {
+                                validMoves.add(jumpPointBlack);
+                            }
+                        break;
+                        default:
+                            break;
                     }
+
                 }
             }
         }
