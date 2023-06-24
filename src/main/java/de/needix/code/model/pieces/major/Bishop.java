@@ -10,7 +10,15 @@ public class Bishop extends Piece {
 
     @Override
     public String getDisplayCharacter() {
-        return "Bishop";
+        switch (getTeam()) {
+            case WHITE:
+                return "♗";
+            case BLACK:
+                return "♝";
+        
+            default:
+                return "";
+        }
     }
 
     @Override

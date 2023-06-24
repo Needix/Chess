@@ -10,7 +10,15 @@ public class Queen extends Piece {
 
     @Override
     public String getDisplayCharacter() {
-        return "Quuen";
+        switch (getTeam()) {
+            case WHITE:
+                return "♕";
+            case BLACK:
+                return "♛";
+        
+            default:
+                return "";
+        }
     }
 
     @Override

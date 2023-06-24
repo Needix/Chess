@@ -10,7 +10,15 @@ public class Knight extends Piece {
 
     @Override
     public String getDisplayCharacter() {
-        return "Knight";
+        switch (getTeam()) {
+            case WHITE:
+                return "♘";
+            case BLACK:
+                return "♞";
+        
+            default:
+                return "";
+        }
     }
 
     @Override

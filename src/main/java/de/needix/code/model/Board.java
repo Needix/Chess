@@ -26,6 +26,7 @@ public class Board {
         pointToPieceMap = new HashMap<>();
         piecesToPointMap = new HashMap<>();
 
+        // TODO - fix rooks ;)
         pointToPieceMap.put(new Point(0, 0), new Rook().setTeam(Team.WHITE));
         pointToPieceMap.put(new Point(0, 7), new Rook().setTeam(Team.WHITE));
         pointToPieceMap.put(new Point(7, 0), new Rook().setTeam(Team.BLACK));

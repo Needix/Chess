@@ -35,7 +35,10 @@ public class Rook extends Piece {
                 Piece blockingPiece = currentBoard.getPiece(currentPosition);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
-                } else{
+                } else if (blockingPiece.isValidPiece() && blockingPiece.getTeam() != this.getTeam()){
+                    validMoves.add(check);
+                    break;
+                } else {
                     break;
                 }
             }
@@ -47,32 +50,41 @@ public class Rook extends Piece {
                 Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
-                } else{
+                } else if (blockingPiece.isValidPiece() && blockingPiece.getTeam() != this.getTeam()){
+                    validMoves.add(check);
+                    break;
+                } else {
                     break;
                 }
             }
         }
 
         //Y-axis - up
-        for (int i = currentPosition.x; i < MainController.BOARD_SIZE; i++) {
+        for (int i = currentPosition.y; i < MainController.BOARD_SIZE; i++) {
             Point check = new Point(currentPosition.x, i);
             if(currentBoard.isInBounds(check)){
                 Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
-                } else{
+                } else if (blockingPiece.isValidPiece() && blockingPiece.getTeam() != this.getTeam()){
+                    validMoves.add(check);
+                    break;
+                } else {
                     break;
                 }
             }
         }
         //Y-axis - down
-        for (int i = currentPosition.x; i >= 0; i--) {
+        for (int i = currentPosition.y; i >= 0; i--) {
             Point check = new Point(currentPosition.x, i);
             if(currentBoard.isInBounds(check)){
                 Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
-                } else{
+                } else if (blockingPiece.isValidPiece() && blockingPiece.getTeam() != this.getTeam()){
+                    validMoves.add(check);
+                    break;
+                } else {
                     break;
                 }
             }
