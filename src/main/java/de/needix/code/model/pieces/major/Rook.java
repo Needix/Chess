@@ -29,10 +29,10 @@ public class Rook extends Piece {
         List<Point> validMoves = new ArrayList<>();
 
         //X-axis - right
-        for (int i = currentPosition.x; i < MainController.BOARD_SIZE; i++) {
+        for (int i = currentPosition.x + 1; i < MainController.BOARD_SIZE; i++) {
             Point check = new Point(i, currentPosition.y);
             if(currentBoard.isInBounds(check)){
-                Piece blockingPiece = currentBoard.getPiece(currentPosition);
+                Piece blockingPiece = currentBoard.getPiece(check);
                 if(!blockingPiece.isValidPiece()){
                     validMoves.add(check);
                 } else if (blockingPiece.isValidPiece() && blockingPiece.getTeam() != this.getTeam()){
@@ -44,7 +44,7 @@ public class Rook extends Piece {
             }
         }
         //X-axis - left
-        for (int i = currentPosition.x; i >= 0; i--) {
+        for (int i = currentPosition.x - 1; i >= 0; i--) {
             Point check = new Point(i, currentPosition.y);
             if(currentBoard.isInBounds(check)){
                 Piece blockingPiece = currentBoard.getPiece(check);
@@ -60,7 +60,7 @@ public class Rook extends Piece {
         }
 
         //Y-axis - up
-        for (int i = currentPosition.y; i < MainController.BOARD_SIZE; i++) {
+        for (int i = currentPosition.y + 1; i < MainController.BOARD_SIZE; i++) {
             Point check = new Point(currentPosition.x, i);
             if(currentBoard.isInBounds(check)){
                 Piece blockingPiece = currentBoard.getPiece(check);
@@ -75,7 +75,7 @@ public class Rook extends Piece {
             }
         }
         //Y-axis - down
-        for (int i = currentPosition.y; i >= 0; i--) {
+        for (int i = currentPosition.y - 1; i >= 0; i--) {
             Point check = new Point(currentPosition.x, i);
             if(currentBoard.isInBounds(check)){
                 Piece blockingPiece = currentBoard.getPiece(check);
