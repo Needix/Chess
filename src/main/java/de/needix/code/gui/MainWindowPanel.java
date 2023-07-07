@@ -99,17 +99,8 @@ public class MainWindowPanel extends JPanel implements MouseListener {
         int coordPieceX = (int) (xCoord / cellWidth);
         int coordPieceY = MainController.BOARD_SIZE - 1 - ((int) (yCoord / cellHeight));
 
-        if (!selectedPiece.isValidPiece()) {
-            selectedPiece = currentBoard.getPiece(coordPieceX, coordPieceY);
-        } else {
-            Piece oldPiece = selectedPiece;
-            selectedPiece =
-                    controller.movePiece(selectedPiece, new Point(coordPieceX, coordPieceY));
-            if (oldPiece == selectedPiece) {
-                selectedPiece = new EmptyPiece();
-            }
-        }
-
+        selectedPiece = controller.selectPiece(coordPieceX, coordPieceY);
+        
         repaint();
     }
 

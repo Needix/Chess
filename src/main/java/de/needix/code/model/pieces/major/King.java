@@ -29,6 +29,7 @@ public class King extends Piece {
 
         // TODO: check check
         // TODO: check if enemy-piece is protected
+        // TODO: check if square is near enemy King
 
         for (int y = -1; y < 2; y++) {
             for (int x = -1; x < 2; x++) {
@@ -47,7 +48,7 @@ public class King extends Piece {
                 }
 
                 Piece piece = currentBoard.getPiece(newX, newY);
-                if (piece.isValidPiece() == false || piece.getTeam() == this.getTeam()) {
+                if (piece.isValidPiece() && piece.getTeam() == this.getTeam()) {
                     continue;
                 }
 
