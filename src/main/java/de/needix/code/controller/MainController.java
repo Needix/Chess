@@ -16,7 +16,7 @@ public class MainController {
     private Board board;
 
     private Piece selectedPiece = new EmptyPiece();
-    private boolean moveTeam = false; // If boolean is false --> White --> else Black
+    private Team teamToMove = Team.WHITE;
 
     public MainController() {
         GUI = new Window(this);
@@ -40,36 +40,31 @@ public class MainController {
 
         board.movePiece(selectedPiece, point);
 
-        if(selectedPiece.getTeam() == Team.WHITE){
-            moveTeam = true;
-        } else if(selectedPiece.getTeam()==Team.BLACK){
-            moveTeam = false;
+        if (teamToMove == Team.WHITE) {
+            teamToMove = Team.BLACK;
+        } else if (teamToMove == Team.BLACK) {
+            teamToMove = Team.WHITE;
         }
 
         return new EmptyPiece();
     }
 
-    public Piece selectPiece(int xCoord, int yCoord){
-        
+    public Piece selectPiece(int xCoord, int yCoord) {
+
         if (!selectedPiece.isValidPiece()) {
             selectedPiece = getBoard().getPiece(xCoord, yCoord);
         } else {
             Piece oldPiece = selectedPiece;
-            selectedPiece =
-                    movePiece(selectedPiece, new Point(xCoord, yCoord));
+            selectedPiece = movePiece(selectedPiece, new Point(xCoord, yCoord));
             if (oldPiece == selectedPiece) {
                 selectedPiece = new EmptyPiece();
             }
-        } 
+        }
 
-        // Todo: only change on move not on select!
-        if(selectedPiece.getTeam() == Team.WHITE && !moveTeam){
-            
+        if (selectedPiece.getTeam() == teamToMove) {
+
             return selectedPiece;
-        } else if(selectedPiece.getTeam() == Team.BLACK && moveTeam){
-            
-            return selectedPiece;
-        } else{
+        } else {
             selectedPiece = new EmptyPiece();
             return selectedPiece;
         }
