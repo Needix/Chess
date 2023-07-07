@@ -47,7 +47,7 @@ public class King extends Piece {
                 }
 
                 Piece piece = currentBoard.getPiece(newX, newY);
-                if (piece.isValidPiece() == false || piece.getTeam() == this.getTeam()) {
+                if (piece.isValidPiece() && piece.getTeam() == this.getTeam()) {
                     continue;
                 }
 
